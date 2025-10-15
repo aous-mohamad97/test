@@ -9,6 +9,14 @@ interface Props {
 }
 
 defineProps<Props>();
+
+const emit = defineEmits<{
+  'item-click': [index: number]
+}>();
+
+const handleItemClick = (index: number) => {
+  emit('item-click', index);
+};
 </script>
 
 <template>
@@ -18,6 +26,7 @@ defineProps<Props>();
       :key="index"
       class="flex items-center gap-3 py-3 px-4 rounded-lg transition-all duration-300 cursor-pointer"
       :class="item.active ? 'bg-white/50 border border-[#d4c5a8]/40' : 'hover:bg-white/20'"
+      @click="handleItemClick(index)"
     >
       <div
         class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300"
